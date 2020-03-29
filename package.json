@@ -22,7 +22,8 @@
     "react-native-screens": "^2.4.0",
     "react-native-tab-view": "^2.13.0",
     "react-navigation-stack": "^2.3.8",
-    "reactotron-react-native": "^5.0.0"
+    "reactotron-react-native": "^5.0.0",
+    "styled-components": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

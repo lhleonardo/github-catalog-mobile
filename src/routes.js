@@ -30,12 +30,12 @@ export default function Routes() {
           }}>
           <Stack.Screen
             name="main"
-            component={User}
+            component={Main}
             options={{title: 'Usuários'}}
           />
           <Stack.Screen
             name="user"
-            component={Main}
+            component={User}
             options={{title: 'Usuário'}}
           />
         </Stack.Navigator>
