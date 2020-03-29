@@ -65,7 +65,6 @@ export const Avatar = styled.Image`
   height: 70px;
   border-radius: 35px;
   background: #eee;
-  border: 1px #eee;
 `;
 
 export const Name = styled.Text`

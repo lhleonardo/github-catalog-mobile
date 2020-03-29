@@ -7,5 +7,5 @@ if (__DEV__) {
 
   console.tron = reactotron;
 
-  reactotron.clear();
+  // reactotron.clear();
 }

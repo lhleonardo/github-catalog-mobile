@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Keyboard, ActivityIndicator} from 'react-native';
+import PropTypes from 'prop-types';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -111,3 +112,7 @@ export default function Main({navigation}) {
     </Container>
   );
 }
+
+Main.propTypes = {
+  navigation: PropTypes.shape({navigate: PropTypes.func}).isRequired,
+};
