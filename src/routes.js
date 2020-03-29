@@ -31,7 +31,7 @@ export default function Routes() {
           <Stack.Screen
             name="main"
             component={Main}
-            options={{title: 'Usuários'}}
+            options={{title: 'GitHub Catalog'}}
           />
           <Stack.Screen
             name="user"
