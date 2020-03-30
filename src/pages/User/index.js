@@ -23,6 +23,8 @@ import {
   Author,
 } from './styles';
 
+import NotFound from '../../components/NotFound';
+
 export default function User({navigation, route}) {
   const {user} = route.params;
   navigation.setOptions({title: user.name || 'Usuário sem nome'});
@@ -60,14 +62,7 @@ export default function User({navigation, route}) {
         </Loading>
       ) : (
         <>
-          {!stars.length && (
-            <>
-              <EmptyStarsInfo>
-                <TextInfo>Nada foi favoritado ainda </TextInfo>
-                <Icon name="emoticon-sad-outline" size={40} color="#5960c1" />
-              </EmptyStarsInfo>
-            </>
-          )}
+          {!stars.length && <NotFound text="Nada foi favoritado" />}
           <Stars
             data={stars}
             keyExtractor={(star) => String(star.id)}

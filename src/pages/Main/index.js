@@ -23,6 +23,7 @@ import {
   ProfileButton,
   ProfileButtonText,
 } from './styles';
+import NotFound from '../../components/NotFound';
 
 export default function Main({navigation}) {
   const [users, setUsers] = useState([]);
@@ -125,6 +126,7 @@ export default function Main({navigation}) {
         {error.flag && <TextError>{error.msg}</TextError>}
       </Form>
 
+      {!users.length && <NotFound text="Nada foi cadastrado ainda" />}
       <List
         data={users}
         keyExtractor={(user) => user.login}

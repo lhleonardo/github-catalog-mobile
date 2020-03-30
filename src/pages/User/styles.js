@@ -45,21 +45,6 @@ export const StarsInfo = styled.View`
   align-items: center;
 `;
 
-export const EmptyStarsInfo = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-
-  flex-direction: column;
-`;
-
-export const TextInfo = styled.Text`
-  font-size: 20px;
-  color: #999;
-
-  margin: 10px 0;
-`;
-
 export const Label = styled.Text`
   color: #333;
   font-size: 16px;
