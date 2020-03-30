@@ -11,7 +11,9 @@ import {
   Container,
   HeaderText,
   Form,
+  FormGroup,
   Input,
+  TextError,
   SubmitButton,
   List,
   User,
@@ -26,6 +28,7 @@ export default function Main({navigation}) {
   const [users, setUsers] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({flag: false, msg: ''});
 
   // para carregar os dados já existentes no Storage.
   useEffect(() => {
@@ -49,22 +52,45 @@ export default function Main({navigation}) {
     saveData();
   }, [users]);
 
+  const handleOnChangeText = (text) => {
+    if (error) {
+      setError(false);
+    }
+
+    setUserInput(text);
+  };
+
   const handleAddUser = async () => {
     setLoading(true);
 
-    const {data} = await api.get(`/users/${userInput}`);
+    try {
+      const hasUser = users.find((user) => user.login === userInput);
+      if (hasUser) {
+        // mas não imprimo nada por enquanto... só aviso que há algo errado...
+        throw new Error('Usuário já existe!');
+      }
 
-    const user = {
-      name: data.name,
-      login: data.login,
-      bio: data.bio,
-      avatar: data.avatar_url,
-    };
+      const {data} = await api.get(`/users/${userInput}`);
 
-    setUsers([...users, user]);
-    setUserInput('');
+      const user = {
+        name: data.name,
+        login: data.login,
+        bio: data.bio,
+        avatar: data.avatar_url,
+      };
+
+      setUsers([...users, user]);
+      setUserInput('');
+    } catch (error) {
+      console.tron.log('Erro!');
+      if (error.response) {
+        setError({flag: true, msg: 'Usuário não encontrado'});
+      } else {
+        setError({flag: true, msg: error.message});
+      }
+    }
+
     setLoading(false);
-
     Keyboard.dismiss();
   };
 
@@ -76,23 +102,27 @@ export default function Main({navigation}) {
     <Container>
       <HeaderText>Salve os seus perfis favoritos do GitHub</HeaderText>
       <Form>
-        <Input
-          autoCorrect={false}
-          autoCapitalize="none"
-          placeholder="Digite o nickname do usuário"
-          onChangeText={(text) => setUserInput(text)}
-          returnKeyType="send"
-          onSubmitEditing={handleAddUser}
-          value={userInput}
-        />
+        <FormGroup>
+          <Input
+            autoCorrect={false}
+            autoCapitalize="none"
+            placeholder="Digite o nickname do usuário"
+            onChangeText={handleOnChangeText}
+            returnKeyType="send"
+            onSubmitEditing={handleAddUser}
+            value={userInput}
+            error={error.flag}
+          />
 
-        <SubmitButton loading={loading} onPress={handleAddUser}>
-          {loading ? (
-            <ActivityIndicator color="#fff" />
-          ) : (
-            <Icon name="add" size={20} color="#FFF"></Icon>
-          )}
-        </SubmitButton>
+          <SubmitButton loading={loading} onPress={handleAddUser}>
+            {loading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Icon name="add" size={20} color="#FFF"></Icon>
+            )}
+          </SubmitButton>
+        </FormGroup>
+        {error.flag && <TextError>{error.msg}</TextError>}
       </Form>
 
       <List

@@ -14,10 +14,14 @@ export const HeaderText = styled.Text`
 `;
 
 export const Form = styled.View`
-  flex-direction: row;
+  flex-direction: column;
   padding-bottom: 20px;
   border-bottom-width: 1px;
   border-color: #eee;
+`;
+
+export const FormGroup = styled.View`
+  flex-direction: row;
 `;
 
 export const Input = styled.TextInput.attrs({
@@ -28,7 +32,14 @@ export const Input = styled.TextInput.attrs({
   background: #e8e6e6;
   border-radius: 4px;
   padding: 0 15px;
-  border: 1px solid #e8e6e6;
+  border: 1px solid ${(props) => (props.error ? '#ff6666' : '#e8e6e6')};
+`;
+
+export const TextError = styled.Text`
+  font-size: 14px;
+  color: #ff6666;
+  font-weight: bold;
+  padding: 5px 0px;
 `;
 
 export const SubmitButton = styled(RectButton)`
