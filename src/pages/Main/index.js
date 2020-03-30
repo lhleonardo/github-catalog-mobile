@@ -131,8 +131,8 @@ export default function Main({navigation}) {
         renderItem={({item}) => (
           <User>
             <Avatar source={{uri: item.avatar}} />
-            <Name>{item.name}</Name>
-            <Bio>{item.bio}</Bio>
+            <Name>{item.name || 'Usuário sem nome'}</Name>
+            <Bio>{item.bio || 'Usuário sem biografia'}</Bio>
 
             <ProfileButton onPress={() => handleNavigate(item)}>
               <ProfileButtonText>Ver perfil</ProfileButtonText>
