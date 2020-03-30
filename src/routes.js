@@ -6,6 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Main from './pages/Main';
 import User from './pages/User';
+import ShowRepo from './pages/ShowRepo';
 
 const Stack = createStackNavigator();
 
@@ -37,6 +38,11 @@ export default function Routes() {
             name="user"
             component={User}
             options={{title: 'Usuário'}}
+          />
+          <Stack.Screen
+            name="show_repo"
+            component={ShowRepo}
+            options={{title: 'WebView'}}
           />
         </Stack.Navigator>
       </NavigationContainer>

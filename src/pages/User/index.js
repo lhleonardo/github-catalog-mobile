@@ -61,7 +61,12 @@ export default function User({navigation, route}) {
           data={stars}
           keyExtractor={(star) => String(star.id)}
           renderItem={({item}) => (
-            <Starred>
+            <Starred
+              onPress={() =>
+                navigation.navigate('show_repo', {
+                  repo: {name: item.name, url: item.html_url},
+                })
+              }>
               <OwnerAvatar source={{uri: item.owner.avatar_url}} />
               <Info>
                 <Title>{item.name}</Title>
