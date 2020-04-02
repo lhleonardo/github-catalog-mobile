@@ -13,7 +13,7 @@ Note: You should install only once time (except when native modifications are ma
 #### `npm run android` or `npx react-native run-android`
 
 ### iOS
-#### `npm run android` or `npx react-native run-android`
+#### `npm run ios` or `npx react-native run-ios`
 
 After, both commands are executed only to install the app on the device. Most of the time you will be able to run the bundler to work.
 
